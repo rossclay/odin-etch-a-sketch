@@ -7,19 +7,26 @@
 
 let squareContainer = document.querySelector('.square-container')
 
-// separately create squares and effects into multiple functions
-
 createSquares(16, 16)
 function createSquares(width, height) {
-    for (i = 0; i < height; i++) {
-        let squareRowDiv = document.createElement('div')
-        squareRowDiv.setAttribute('class', 'squareRow')
-        squareContainer.appendChild(squareRowDiv)
-        for (let j = 0; j < width; j++) {
+
+    for (i = 0; i < width; i++) {
+        let squareColumnDiv = document.createElement('div')
+        squareColumnDiv.setAttribute('class', 'square-column')
+        squareContainer.appendChild(squareColumnDiv)
+        for (let j = 0; j < height; j++) {
             let squareDiv = document.createElement('div')
             squareDiv.setAttribute('class', 'square')
-            squareRowDiv.appendChild(squareDiv)
+            squareColumnDiv.appendChild(squareDiv)
         }
+    }
+
+}
+
+function deleteSquares() {
+    let squareColumnDiv = document.querySelectorAll('.square-column')
+    while (squareColumnDiv.firstChild) {
+        squareColumnDiv.remove(squareColumnDiv.firstChild)
     }
 }
 
@@ -35,6 +42,39 @@ clearBtn.addEventListener('click', () =>
     squares.forEach((square) => square.setAttribute('style', 'background-color: #eee'))
 )
 
-// // custom grid size, up to 100x100 (UNDER CONSTRUCTION)
-// let customBtn = document.querySelector('.custom')
-// customBtn.addEventListener('click', createSquares(int(prompt('Please enter a value between 1-100:')))
+// // multiple grid sizes (UNDER CONSTRUCTION)
+// let smallBtn = document.querySelector('.small-btn')
+// smallBtn.addEventListener('click', deleteSquares())
+// smallBtn.addEventListener('click', createSquares(16, 16))
+
+// let mediumBtn = document.querySelector('.medium-btn')
+// mediumBtn.addEventListener('click', deleteSquares())
+// mediumBtn.addEventListener('click', createSquares(32, 32))
+
+// let largeBtn = document.querySelector('.large-btn')
+// largeBtn.addEventListener('click', deleteSquares())
+// largeBtn.addEventListener('click', createSquares(64, 64))
+
+
+
+// BONUS 1: Rainbow button
+function generateRandomColors() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+let rainbowBtn = document.querySelector('.rainbow-btn')
+rainbowBtn.addEventListener('click', () =>
+    squares.forEach((square) => square.addEventListener('mouseenter', () => {
+        square.style.background = generateRandomColors();
+    }))
+)
+
+// reset to standard color
+let standardBtn = document.querySelector('.standard-btn')
+standardBtn.addEventListener('click', () =>
+    squares.forEach((square) => square.addEventListener('mouseenter', () => {
+        square.setAttribute('style', 'background-color: black');
+    }))
+)

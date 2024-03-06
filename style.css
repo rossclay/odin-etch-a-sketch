@@ -1,15 +1,29 @@
 .body {
+    display: flex;
     justify-content: center;
 }
 
+.btn-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .square-container {
     display: flex;
+    justify-content: center;
+    border-style: solid;
 }
 
 .square {
     height: 10px;
     width: 10px;
-    border: solid;
+    border: solid grey;
     background-color: #eee;
+}
+
+.bottom-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
