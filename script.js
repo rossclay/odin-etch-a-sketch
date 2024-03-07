@@ -24,57 +24,63 @@ function createSquares(width, height) {
 }
 
 function deleteSquares() {
-    let squareColumnDiv = document.querySelectorAll('.square-column')
-    while (squareColumnDiv.firstChild) {
-        squareColumnDiv.remove(squareColumnDiv.firstChild)
-    }
+    let allSquareColumnDiv = document.querySelectorAll('.square-column')
+    allSquareColumnDiv.forEach((squareColumnDiv) => squareColumnDiv.replaceChildren())
 }
 
-// squares change color on hover 
-let squares = document.querySelectorAll('.square')
-squares.forEach((square) => square.addEventListener('mouseenter', () => {
-    square.setAttribute('style', 'background-color: black');
-}))
+
+// squares change to standard color on hover 
+function assignStandardColor() {
+    let squares = document.querySelectorAll('.square')
+    squares.forEach((square) => square.addEventListener('mouseenter', () => {
+        square.setAttribute('style', 'background-color: black');
+    }))
+}
+assignStandardColor()
 
 // clear button
 let clearBtn = document.querySelector('.clear')
-clearBtn.addEventListener('click', () =>
+clearBtn.addEventListener('click', () => clearSquaresColors())
+
+function clearSquaresColors() {
+    let squares = document.querySelectorAll('.square')
     squares.forEach((square) => square.setAttribute('style', 'background-color: #eee'))
-)
+}
 
-// // multiple grid sizes (UNDER CONSTRUCTION)
-// let smallBtn = document.querySelector('.small-btn')
-// smallBtn.addEventListener('click', deleteSquares())
-// smallBtn.addEventListener('click', createSquares(16, 16))
+// multiple grid sizes
+let smallBtn = document.querySelector('.small-btn')
+smallBtn.addEventListener('click', () => { deleteSquares() })
+smallBtn.addEventListener('click', () => { createSquares(16, 16) })
 
-// let mediumBtn = document.querySelector('.medium-btn')
-// mediumBtn.addEventListener('click', deleteSquares())
-// mediumBtn.addEventListener('click', createSquares(32, 32))
+let mediumBtn = document.querySelector('.medium-btn')
+mediumBtn.addEventListener('click', () => { deleteSquares() })
+mediumBtn.addEventListener('click', () => { createSquares(32, 32) })
 
-// let largeBtn = document.querySelector('.large-btn')
-// largeBtn.addEventListener('click', deleteSquares())
-// largeBtn.addEventListener('click', createSquares(64, 64))
+let largeBtn = document.querySelector('.large-btn')
+largeBtn.addEventListener('click', () => { deleteSquares() })
+largeBtn.addEventListener('click', () => { createSquares(64, 64) })
 
 
 
 // BONUS 1: Rainbow button
 function generateRandomColors() {
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }
-let rainbowBtn = document.querySelector('.rainbow-btn')
-rainbowBtn.addEventListener('click', () =>
+function assignRainbowColor() {
+    let squares = document.querySelectorAll('.square')
     squares.forEach((square) => square.addEventListener('mouseenter', () => {
         square.style.background = generateRandomColors();
     }))
+}
+
+let rainbowBtn = document.querySelector('.rainbow-btn')
+rainbowBtn.addEventListener('click', () =>
+    assignRainbowColor()
 )
 
 // reset to standard color
 let standardBtn = document.querySelector('.standard-btn')
-standardBtn.addEventListener('click', () =>
-    squares.forEach((square) => square.addEventListener('mouseenter', () => {
-        square.setAttribute('style', 'background-color: black');
-    }))
-)
+standardBtn.addEventListener('click', () => assignStandardColor())
