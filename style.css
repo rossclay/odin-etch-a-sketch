@@ -1,14 +1,29 @@
-.body {
+:root {
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
     display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    gap: 4vh;
+    padding-bottom: 2.5rem;
 }
 
 .btn-menu {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1vw;
 }
 
 .square-container {
@@ -38,8 +53,9 @@ footer {
     align-items: center;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 97vw;
     height: fit-content;
+    margin-top: auto;
 }
 
 .github-logo {
