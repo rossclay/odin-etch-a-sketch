@@ -1,6 +1,8 @@
 .body {
     display: flex;
     justify-content: center;
+    align-items: center;
+
 }
 
 .btn-menu {
@@ -12,7 +14,9 @@
 .square-container {
     display: flex;
     justify-content: center;
-    border-style: solid;
+    align-items: center;
+    /* border-style: solid;
+    max-width: fit-content; */
 }
 
 .square {
@@ -26,4 +30,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: fit-content;
+}
+
+.github-logo {
+    font-size: 3rem;
+    margin-left: 1rem;
+    transition: transform 1s;
+}
+
+a {
+    color: inherit;
+}
+
+.github-logo:hover {
+    transform: rotate(1turn);
 }
